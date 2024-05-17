@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminator Simulation Game</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        color: white;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    #terminal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 60%;
+        background-color: #0c0c0c;
+        border: 2px solid #00ff00;
+        overflow: auto;
+        padding: 20px;
+    }
+    #input {
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        color: #00ff00;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+        outline: none;
+    }
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+</head>
+<body>
+<div id="terminal">
+    <p>Welcome to the Terminator Simulation Game!</p>
+    <p>Type 'help' for a list of available commands.</p>
+    <p id="output"></p>
+    <form id="command-form">
+        <span>$</span>
+        <input type="text" id="input" autocomplete="off" autofocus>
+    </form>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+        const commandForm = document.getElementById('command-form');
+
+        commandForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const command = input.value.trim();
+            input.value = ''; // Clear input field
+            processCommand(command);
+        });
+
+        function processCommand(command) {
+            switch(command.toLowerCase()) {
+                case 'help':
+                    output.innerHTML += "Available commands:<br>- hack<br>- terminate<br>";
+                    break;
+                case 'hack':
+                    output.innerHTML += "Hacking in progress...<br>";
+                    setTimeout(function() {
+                        output.innerHTML += "Hack successful! You're in.<br>";
+                    }, 2000);
+                    break;
+                case 'terminate':
+                    output.innerHTML += "Terminating all systems...<br>";
+                    setTimeout(function() {
+                        output.innerHTML += "Termination complete. Game over.<br>";
+                    }, 2000);
+                    break;
+                case 'i shit my pants':
+                    output.innerHTML += "<img src='pants.jpg' alt='pants'><br>";
+                    break;
+                case 'nigga':
+                    output.innerHTML += "<img src='nigga.jpg' alt='nigga'><br>";
+                    break;
+                case 'world before and after':
+                    output.innerHTML += "<img src='worldbeforeandafter.gif' alt='world before and after'><br>";
+                    break;
+                case 'who asked':
+                    output.innerHTML += "<img src='whoasked.gif' alt='who asked'><br>";
+                    break;
+                case 'talking limit':
+                    output.innerHTML += "<img src='talkinglimit.gif' alt='talking limit'><br>";
+                    break;
+                case 'no one cares':
+                    output.innerHTML += "<img src='no one cares' alt='no one cares'><br>";
+                    break;
+                default:
+                    output.innerHTML += "Command not recognized. Type 'help' for available commands.<br>";
+            }
+        }
+    });
+</script>
+</body>
+</html>
